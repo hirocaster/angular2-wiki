@@ -1,0 +1,19 @@
+<h1>Item component edit page</h1>
+
+<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+<div *ngIf="item">
+  <div>
+    <label>title: </label>
+    <input [(ngModel)]="item.title" placeholder="title" />
+  </div>
+  <div>
+    <label>body: </label>
+    <input [(ngModel)]="item.body" placeholder="body" />
+  </div>
+  <hr>
+  <h2>{{item.title}}</h2>
+  <div>
+    {{item.body}}
+  </div>
+</div>

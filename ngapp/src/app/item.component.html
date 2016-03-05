@@ -1,0 +1,11 @@
+<h1>Item component page</h1>
+
+<div *ngIf="item">
+  <button (click)="gotoEdit()">Edit this item</button>
+  <h2>title: {{item.title}}</h2>
+  id: {{item.id}}
+  body: {{item.body}}
+  rendered_body: {{item.rendered_body}}
+</div>
+
+<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
