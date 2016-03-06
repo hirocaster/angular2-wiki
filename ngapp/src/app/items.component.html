@@ -1,0 +1,9 @@
+<h1>Items component page</h1>
+
+<ul class="items">
+  <li *ngFor="#item of items" (click)="gotoItem(item)" class="link">
+    {{item.title}}
+  </li>
+</ul>
+
+<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>

@@ -23,6 +23,11 @@ gulp.task('html', function () {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('css', function () {
+  return gulp.src('src/**/*.css')
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('libs', function () {
   return gulp.src([
       'node_modules/es6-shim/es6-shim.min.js',
@@ -41,6 +46,7 @@ gulp.task('libs', function () {
 gulp.task('watch', function() {
   gulp.watch('src/**/*.ts', ['ts']);
   gulp.watch('src/**/*.html', ['html']);
+  gulp.watch('src/**/*.css', ['css']);
 });
 
 
@@ -72,4 +78,4 @@ gulp.task('proxy', function() {
   });
 });
 
-gulp.task('default', ['proxy', 'ts', 'html', 'libs', 'watch']);
+gulp.task('default', ['proxy', 'ts', 'html', 'css', 'libs', 'watch']);

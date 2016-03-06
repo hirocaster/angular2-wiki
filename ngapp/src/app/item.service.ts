@@ -11,11 +11,18 @@ export class ItemService {
 
   constructor (private http: Http) {}
 
+  getItems() {
+    return this.http.get("api/items/")
+        .map(res => <Item[]> res.json())
+        .do(data => console.log(data))
+          .catch(this.handleError);
+  }
+
   getItem(id: number) {
     return this.http.get("api/items/" + id)
         .map(res => <Item> res.json())
         .do(data => console.log(data))
-        .catch(this.handleError);
+          .catch(this.handleError);
   }
 
   private handleError (error: Response) {
