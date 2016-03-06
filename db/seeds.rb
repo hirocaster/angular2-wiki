@@ -6,4 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Item.create(title: "Hello", body: "# World", rendered_body: "<h1>World</h1>")
+Item.create(title: "Hello", body: "# World", rendered_body: "<h1>World</h1>") unless Item.exists?(id: 1)
+Item.create(title: "Hello2", body: "# World2", rendered_body: "<h1>World2</h1>") unless Item.exists?(id: 2)
