@@ -9,7 +9,7 @@ import { ItemService } from "./item.service";
 @Component({
   selector: "item-edit",
   templateUrl: "./app/item-edit.component.html",
-  styleUrls: [],
+  styleUrls: ["app/item-edit.component.css"],
   providers: [HTTP_PROVIDERS, ItemService],
   inputs: ["item"]
 })

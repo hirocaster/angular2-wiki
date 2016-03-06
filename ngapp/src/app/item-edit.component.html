@@ -2,14 +2,12 @@
 
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 
-<div *ngIf="item">
+<div *ngIf="item" class="editor_content">
   <div>
-    <label>title: </label>
-    <input [(ngModel)]="item.title" placeholder="title" />
+    <input [(ngModel)]="item.title" placeholder="Title" class="edit_title" />
   </div>
   <div>
-    <label>body: </label>
-    <input [(ngModel)]="item.body" placeholder="body" />
+    <textarea [(ngModel)]="item.body" placeholder="body" class="edit_body"></textarea>
   </div>
   <hr>
   <h2>{{item.title}}</h2>
