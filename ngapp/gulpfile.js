@@ -1,8 +1,7 @@
 var del = require('del');
 var gulp = require('gulp');
-var connect = require('gulp-connect');
-var modRewrite = require('connect-modrewrite');
-var proxy = require('proxy-middleware');
+var webserver = require('gulp-webserver');
+
 var url = require('url');
 var ts = require('gulp-typescript');
 
@@ -54,28 +53,20 @@ gulp.task('clean', function(done) {
   del(['dist'], done);
 });
 
-gulp.task('proxy', function() {
-  connect.server({
-    root: ['dist'],
-    port: 9000,
-    livereload: true,
-
-    // /apiにきたリクエストは http://localhost:3000/api にプロキシする。
-    middleware: function(connect, o) {
-      return [ (function() {
-        var options = url.parse('http://localhost:3000/');
-        options.route = '/api';
-        return proxy(options);
-      })(),
-
-    // URLを指定してアクセスがきたらindex.htmlに渡してangular2に処理させる
-    (function() {
-      return modRewrite([
-        '!\\.\\w+$ /index.html [L]'
-      ]);
-    })()];
-    }
-  });
+gulp.task('server', function () {
+  gulp.src('dist')
+    .pipe(webserver({
+      host: 'localhost',
+      port: 9000,
+      livereload: true,
+      fallback: 'index.html',
+      proxies: [
+        {
+          source: '/api',
+          target: 'http://localhost:3000'
+        }
+      ]
+    }));
 });
 
-gulp.task('default', ['proxy', 'ts', 'html', 'css', 'libs', 'watch']);
+gulp.task('default', ['server', 'ts', 'html', 'css', 'libs', 'watch']);
