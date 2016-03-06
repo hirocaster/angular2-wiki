@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "items" => "item#index"
   get "items/:id" => "item#view"
+  patch "items/:id" => "item#update"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "angular2/core";
 import { HTTP_PROVIDERS } from "angular2/http";
-import { RouteParams } from "angular2/router";
+import { Router, RouteParams } from "angular2/router";
 
 import { Item } from "./item";
 import { ItemComponent } from "./item.component";
@@ -17,6 +17,7 @@ import { ItemService } from "./item.service";
 export class ItemEditComponent {
 
   constructor(
+    private _router: Router,
     private _itemService: ItemService,
     private _routeParams: RouteParams) {
   }
@@ -34,5 +35,17 @@ export class ItemEditComponent {
         .subscribe(
           item => this.item = item,
           error => this.errorMessage = <any>error);
+  }
+
+  updateItem (item: Item) {
+    if (!item) { return; }
+    this._itemService.updateItem(item)
+        .subscribe(
+          item  => this.gotoItem(item),
+          error => this.errorMessage = <any>error);
+  }
+
+  gotoItem(item: Item) {
+    this._router.navigate(["Item", { id: item.id }]);
   }
 }

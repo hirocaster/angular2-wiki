@@ -9,6 +9,9 @@
   <div>
     <textarea [(ngModel)]="item.body" placeholder="body" class="edit_body"></textarea>
   </div>
+  <button (click)="updateItem(item)">
+    Update
+  </button>
   <hr>
   <h2>{{item.title}}</h2>
   <div>
