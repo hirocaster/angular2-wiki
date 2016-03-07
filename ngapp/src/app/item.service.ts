@@ -30,7 +30,7 @@ export class ItemService {
     console.log(body);
     let headers = new Headers({
       "Content-Type": "application/json",
-      "X-CSRF-TOKEN": this.getCookie("CSRF-TOKEN")
+      "X-CSRF-Token": decodeURIComponent(this.getCookie("CSRF-Token"))
     });
     let options = new RequestOptions({ headers: headers });
     return this.http.patch("api/items/" + item.id, body, options)
