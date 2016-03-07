@@ -45,6 +45,14 @@ export class ItemEditComponent {
           error => this.errorMessage = <any>error);
   }
 
+  updatePreview (item: Item) {
+    if (!item) { return; }
+    this._itemService.updatePreview(item)
+        .subscribe(
+          item  => this.item.rendered_body = <string>item.rendered_body,
+          error => this.errorMessage = <any>error);
+  }
+
   gotoItem(item: Item) {
     this._router.navigate(["Item", { id: item.id }]);
   }

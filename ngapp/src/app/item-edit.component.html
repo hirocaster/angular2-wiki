@@ -7,14 +7,14 @@
     <input [(ngModel)]="item.title" placeholder="Title" class="edit_title" />
   </div>
   <div>
-    <textarea [(ngModel)]="item.body" placeholder="body" class="edit_body"></textarea>
+    <textarea [(ngModel)]="item.body" (ngModelChange)="updatePreview(item)" placeholder="body" class="edit_body"></textarea>
   </div>
+  <button (click)="updatePreview(item)">
+    Preview
+  </button>
   <button (click)="updateItem(item)">
     Update
   </button>
   <hr>
-  <h2>{{item.title}}</h2>
-  <div>
-    {{item.body}}
-  </div>
+  <div [innerHTML]="item.rendered_body"></div>
 </div>

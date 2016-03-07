@@ -45,6 +45,19 @@ export class ItemService {
       return parts.pop().split(";").shift();
   }
 
+  updatePreview (item: Item): Observable<Item>  {
+    let body = JSON.stringify({ item });
+    console.log(body);
+    let headers = new Headers({
+      "Content-Type": "application/json",
+      "X-CSRF-Token": decodeURIComponent(this.getCookie("CSRF-Token"))
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.patch("api/preview/", body, options)
+        .map(res =>  <Item> res.json())
+        .catch(this.handleError);
+  }
+
   private handleError (error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || "Server error");

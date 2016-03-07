@@ -45,8 +45,12 @@ GEM
     concurrent-ruby (1.0.1)
     debug_inspector (0.0.2)
     erubis (2.7.0)
+    github-markdown (0.6.9)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    html-pipeline (2.3.0)
+      activesupport (>= 2, < 5)
+      nokogiri (>= 1.4)
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -127,6 +131,8 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  github-markdown
+  html-pipeline
   jbuilder (~> 2.0)
   mysql2 (>= 0.3.13, < 0.5)
   pry-rails

@@ -10,7 +10,16 @@ class ItemController < ApplicationController
 
   def update
     item = Item.find(params[:item][:id])
-    item.update(item_params)
+    item.attributes = item_params
+    item.markup
+    item.save
+    render json: item
+  end
+
+  def preview
+    item = Item.find(params[:item][:id])
+    item.attributes = item_params
+    item.markup
     render json: item
   end
 

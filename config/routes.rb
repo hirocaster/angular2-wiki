@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  patch "preview" => "item#preview"
+
   get "items" => "item#index"
   get "items/:id" => "item#view"
   patch "items/:id" => "item#update"
