@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get "items" => "item#index"
   get "items/:id" => "item#view"
+  get "items/new" => "itesm#new"
+  post "items" => "itesm#create"
   patch "items/:id" => "item#update"
 
   # The priority is based upon order of creation: first created -> highest priority.
