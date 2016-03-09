@@ -22,18 +22,38 @@ export class ItemEditComponent {
     private _routeParams: RouteParams) {
   }
 
+  id: number;
   item: Item;
   errorMessage: string;
 
   ngOnInit() {
-    this.getItem();
+    this.id = +this._routeParams.get("id");
+    if (this.id) {
+      this.getItem(this.id);
+    } else {
+      this.newItem();
+    }
   }
 
-  getItem() {
-    let id = +this._routeParams.get("id");
+  newItem() {
+    this._itemService.newItem()
+        .subscribe(
+          item => this.item = item,
+          error => this.errorMessage = <any>error);
+  }
+
+  getItem(id: number) {
     this._itemService.getItem(id)
         .subscribe(
           item => this.item = item,
+          error => this.errorMessage = <any>error);
+  }
+
+  addItem (item: Item) {
+    if (!item) { return; }
+    this._itemService.addItem(item)
+        .subscribe(
+          item  => this.gotoItem(item),
           error => this.errorMessage = <any>error);
   }
 

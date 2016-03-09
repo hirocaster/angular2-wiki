@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   patch "preview" => "item#preview"
 
   get "items" => "item#index"
+  get "items/new" => "item#new"
   get "items/:id" => "item#view"
-  get "items/new" => "itesm#new"
-  post "items" => "itesm#create"
   patch "items/:id" => "item#update"
+  post "items" => "item#create"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

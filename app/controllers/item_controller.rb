@@ -8,7 +8,7 @@ class ItemController < ApplicationController
   end
 
   def create
-    item = Item.find(params[:item][:id])
+    item = Item.new
     item.attributes = item_params
     item.markup
     item.save
@@ -29,7 +29,7 @@ class ItemController < ApplicationController
   end
 
   def preview
-    item = Item.find(params[:item][:id])
+    item = Item.new
     item.attributes = item_params
     item.markup
     render json: item
