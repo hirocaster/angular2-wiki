@@ -6,13 +6,23 @@ import { ItemEditComponent } from "./item-edit.component";
 
 @Component({
   selector: "my-app",
-  template: `<router-outlet></router-outlet>`,
+  template: `
+<ul>
+  <li><a [routerLink]="['Items']">Item List</a></li>
+  <li><a [routerLink]="['ItemNew']">New Item</a></li>
+</ul>
+<router-outlet></router-outlet>`,
   styleUrls: [],
   directives: [ROUTER_DIRECTIVES],
   providers: [ROUTER_PROVIDERS]
 })
 
 @RouteConfig([
+  {
+    path: "/items/new",
+    name: "ItemNew",
+    component: ItemEditComponent
+  },
   {
     path: "/items/:id/edit",
     name: "ItemEdit",

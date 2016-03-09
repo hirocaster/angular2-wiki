@@ -18,6 +18,13 @@ export class ItemService {
           .catch(this.handleError);
   }
 
+  newItem() {
+    return this.http.get("api/items/new")
+        .map(res => <Item> res.json())
+        .do(data => console.log(data))
+          .catch(this.handleError);
+  }
+
   getItem(id: number) {
     return this.http.get("api/items/" + id)
         .map(res => <Item> res.json())
@@ -25,9 +32,20 @@ export class ItemService {
           .catch(this.handleError);
   }
 
+  addItem (item: Item): Observable<Item>  {
+    let body = JSON.stringify({ item });
+    let headers = new Headers({
+      "Content-Type": "application/json",
+      "X-CSRF-Token": decodeURIComponent(this.getCookie("CSRF-Token"))
+    });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post("api/items", body, options)
+        .map(res =>  <Item> res.json())
+        .catch(this.handleError);
+  }
+
   updateItem (item: Item): Observable<Item>  {
     let body = JSON.stringify({ item });
-    console.log(body);
     let headers = new Headers({
       "Content-Type": "application/json",
       "X-CSRF-Token": decodeURIComponent(this.getCookie("CSRF-Token"))

@@ -1,4 +1,4 @@
-<h1>Item component edit page</h1>
+<h1>Item component new/edit page</h1>
 
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 
@@ -9,10 +9,10 @@
   <div>
     <textarea [(ngModel)]="item.body" (ngModelChange)="updatePreview(item)" placeholder="body" class="edit_body"></textarea>
   </div>
-  <button (click)="updatePreview(item)">
-    Preview
+  <button *ngIf="!(id)"(click)="addItem(item)">
+    Add
   </button>
-  <button (click)="updateItem(item)">
+  <button *ngIf="(id)" (click)="updateItem(item)">
     Update
   </button>
   <hr>
